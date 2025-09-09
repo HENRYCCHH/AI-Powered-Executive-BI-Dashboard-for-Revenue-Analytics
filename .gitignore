@@ -2,3 +2,4 @@
 **/.venv_ai_dashboard
 **/gemini_output
 **/project_preparation
+**/__pycache__
