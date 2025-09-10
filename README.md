@@ -18,7 +18,7 @@ Data lands in **Snowflake**, is transformed with **dbt**, summarized by **Google
 
 ## Tech stack
 - **Data Source**: Google Analytics 4
-- **Warehouse**: GCS BigQuery & S3 Bucket, Snowflake
+- **Warehouse**: GCS BigQuery & Buckets, Snowflake
 - **Modeling**: dbt Cloud
 - **LLMs**: Google Gemini (Flash)
 - **Viz**: Power BI Desktop / Service
