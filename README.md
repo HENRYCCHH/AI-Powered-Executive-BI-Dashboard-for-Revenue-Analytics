@@ -90,15 +90,9 @@ Generates insights for the **latest date in DIM_DATE** across Total/Month/Week/D
 ---
 
 ## Power BI
-1. **Get Data → Snowflake**, import `AI_INSIGHTS` (plus your fact views).
-2. Add a **date slicer** and a **compare‑mode slicer** (`Total/Month/Week/Day`).
-3. Bind your text card to the `DISPLAY_TEXT` column (or the measure that selects the latest row per date/type).
-4. Optional titles:
-   - *AI Insight — {Selected Mode} · ending {Selected Date}*
-   - *Daily Revenue Trend — {Start} → {End}*
+**Get Data → Snowflake**, import `AI_INSIGHTS` (plus your fact views).
 
 > Note: Publish to the Service (Pro/Fabric or Trial) to enable **scheduled refresh**.
-
 ---
 
 ## Notes
