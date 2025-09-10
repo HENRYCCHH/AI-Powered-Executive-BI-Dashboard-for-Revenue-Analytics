@@ -43,21 +43,56 @@ v0.5 – Fact Tables and KPIs
 
 ⸻
 
-Current Status
-	•	End-to-end pipeline runs from GA4 → GCS → Snowflake → dbt → clean marts.
-	•	Dedup logic solid.
-	•	Tests ensure no regressions.
-	•	Fact models produce stable metrics ready for dashboards.
+v0.6 – Date Spine & Trend Signals
+• Created dense dim_date and a zero-filled purchase view to include empty days.
+• Added WoW deltas, 7-day moving averages, z-score anomaly flags.
+• Fixed partial date coverage (Nov no-sales span) so trends compute correctly.
 
 ⸻
 
-Next Steps
-	•	Document dedup contract clearly in README.
-	•	Add metrics YAML for semantic KPIs.
-	•	Build trend signals (WoW deltas, anomalies, z-scores).
-	•	Create AI insights table for dashboards.
-	•	Hook up Power BI / Tableau with KPI cards + Insights panel.
+v0.7 – Channel Trends & Top Movers
+• Built v_channel_daily, v_channel_trends, and a “Top Movers” query with an improved impact score (size + rate).
+• Power BI star schema: DIM_DATE + DIM_CHANNEL to Facts and Views (composite key on Source/Medium/Campaign).
+• DAX patterns for: anchor last date, rolling windows (Day/Week/Month/Total), dynamic labels, YoY/QoQ/MoM/WoW.
 
 ⸻
 
-Henry Chiu, Aug 2025
+v0.8 – AI Insights (LLM) – Storage & Serving
+• Created GA4_DEMO.DEV_MART.AI_INSIGHTS table (headline, bullets, actions, JSON inputs, model metadata).
+• Wrote ai_insight_writer.py (daily) and ai_insight_backfill.py (one-time historical) using Gemini 2.5 Flash.
+• Enforced JSON schema in prompts; compact display_text renderer (headline + 2 bullets + “Next steps”).
+• Rate-limit + retry logic; safe defaults when revenue/orders are zero (no token spend).
+
+⸻
+
+v0.9 – Security, Roles & Connectivity
+• Provisioned AI_APP_ROLE (runtime) and BI_VIEWER_ROLE (read-only); created AI_WRITER and POWERBI_SVC users.
+• Granted USAGE on DB/Schema/Warehouse; SELECT/INSERT/UPDATE/DELETE on AI_INSIGHTS.
+• Power BI connection via SSO + ODBC DSN; MFA-friendly setup validated.
+
+⸻
+
+v1.0 – Executive Dashboard (Power BI)
+• KPI cards + dynamic titles; date anchor slicer + compare-mode slicer (Day/Week/Month/Total).
+• Line trends with anchor marker; Top Movers table ranked by impact (robust RANKX over SUMMARIZE with TREATAS).
+• AI Insight card bound to AI_INSIGHTS.display_text and filtered by date/type for instant narrative.
+• Visual polish: readable labels, compact legends, clean titles, short source labels (“Private” for redacted).
+
+⸻
+
+v1.1 – Backfill & Data Quality Enhancements
+• Backfilled 2020-11-01 → 2021-01-31 with four insights per day (Total/Month/Week/Day).
+• Skipped LLM calls for 2020-11 (no purchases) using default insights.
+• Patched individual holes (e.g., missing 2020-12-01 Total insight).
+• Eliminated QUALIFY misuse in Python queries; swapped to supported filters when needed.
+
+⸻
+
+v1.2 – DevEx, Docs & Sharing
+• Added .env.example, Readme, repo structure, and runbook notes.
+• GIF demo + LinkedIn copy; clarified free-tier LLM limits and model choices.
+• Compact text utility (ai_display_compact.py) merged into writer/backfill for consistent output.
+
+⸻
+
+Henry Chiu, Sep 2025
