@@ -89,7 +89,7 @@ Generates insights for the **latest date in DIM_DATE** across Total/Month/Week/D
 
 ---
 
-## Power BI
+### 5) Power BI
 **Get Data → Snowflake**, import `AI_INSIGHTS` (plus your fact views).
 
 > Note: Publish to the Service (Pro/Fabric or Trial) to enable **scheduled refresh**.
