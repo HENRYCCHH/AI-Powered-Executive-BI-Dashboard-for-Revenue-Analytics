@@ -1,0 +1,19 @@
+version: 2
+models:
+  - name: stg_ga4_events
+    columns:
+      - name: event_dt
+        data_tests: [not_null]
+      - name: event_ts
+        data_tests: [not_null]
+      - name: event_name
+        data_tests: [not_null]
+      - name: user_pseudo_id
+        data_tests: [not_null]
+      - name: row_key
+        data_tests: [unique, not_null]
+      - name: device_category
+        data_tests:
+          - accepted_values:
+              values: ['desktop','mobile','tablet','(unknown)']
+              quote: true
