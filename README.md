@@ -1,6 +1,6 @@
 # AI‑Powered Revenue Analytics Dashboard (Snowflake · dbt · Gemini · Power BI)
 
-<img src="assets/demo.gif" alt="Dashboard demo" width="800">
+<img src="assets/PowerBI_dashboard_demo.gif" alt="Dashboard demo" width="800">
 
 A portfolio project that turns raw GA4 events into an executive dashboard with **daily AI insights**.
 Data lands in **Snowflake**, is transformed with **dbt**, summarized by **Google Gemini** (free tier), and visualized in **Power BI**.
